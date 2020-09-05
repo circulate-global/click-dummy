@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { LoadAssets } from "./src/components";
 import { ThemeProvider } from "./src/components/Theme";
 import { CartNavigator } from "./src/Cart";
+import { ContextWrapper } from "./src/context";
 
 const fonts = {
   "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
@@ -23,11 +24,13 @@ export default function App() {
         maxWidth: 500
       }}
     >
-      <ThemeProvider>
-        <LoadAssets {...{ fonts }}>
-          <CartNavigator />
-        </LoadAssets>
-      </ThemeProvider>
+      <ContextWrapper>
+        <ThemeProvider>
+          <LoadAssets {...{ fonts }}>
+            <CartNavigator />
+          </LoadAssets>
+        </ThemeProvider>
+      </ContextWrapper>
     </View>
   );
 }

@@ -1,10 +1,11 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import {
   createTheme,
   createBox,
   createText,
   ThemeProvider as ReStyleThemeProvider
 } from "@shopify/restyle";
+import { DarkModeContext } from "../context";
 
 const palette = {
   blueLight: "#4A9CE8",
@@ -77,9 +78,30 @@ const theme = createTheme({
   }
 });
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => (
-  <ReStyleThemeProvider {...{ theme }}>{children}</ReStyleThemeProvider>
-);
+const darkTheme = {
+  ...theme,
+  colors: {
+    mainBackground: palette.bluePrimary,
+    mainForeground: palette.white,
+    baseText: palette.white,
+    baseTitle: palette.yellowLight,
+    cartItemBackground: palette.bluePrimary,
+    cartItemForeground: palette.yellowLight,
+    buttonPrimary: palette.redPrimary,
+    buttonSecondary: palette.yellowLight,
+    navigationPrimary: palette.yellowLight,
+    navigationSecondary: palette.bluePrimary
+  }
+};
+
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const { darkMode } = useContext(DarkModeContext);
+  return (
+    <ReStyleThemeProvider theme={darkMode ? darkTheme : theme}>
+      {children}
+    </ReStyleThemeProvider>
+  );
+};
 
 export type Theme = typeof theme;
 export const Box = createBox<Theme>();
