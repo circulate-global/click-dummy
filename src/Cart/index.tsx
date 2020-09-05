@@ -19,9 +19,7 @@ export const CartNavigator = () => {
         headerStyle: {
           backgroundColor: theme.colors.navigationPrimary
         },
-        headerTitleStyle: {
-          color: theme.colors.navigationSecondary
-        },
+        headerTintColor: theme.colors.navigationSecondary,
         headerRight: () => (
           <RoundedIconButton
             onPress={toggleDarkMode}
