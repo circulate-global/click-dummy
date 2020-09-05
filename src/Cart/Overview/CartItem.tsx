@@ -15,7 +15,7 @@ const CartItem = ({ title, amount: defaultAmount, price }: CartItemProps) => {
   return (
     <Box
       borderRadius={theme.spacing.m}
-      margin="m"
+      marginVertical="m"
       padding={"l"}
       backgroundColor="cartItemBackground"
     >

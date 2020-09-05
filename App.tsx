@@ -17,10 +17,17 @@ const fonts = {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <LoadAssets {...{ fonts }}>
-        <CartNavigator />
-      </LoadAssets>
-    </ThemeProvider>
+    <View
+      style={{
+        flex: 1,
+        maxWidth: 500
+      }}
+    >
+      <ThemeProvider>
+        <LoadAssets {...{ fonts }}>
+          <CartNavigator />
+        </LoadAssets>
+      </ThemeProvider>
+    </View>
   );
 }
