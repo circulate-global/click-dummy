@@ -70,7 +70,9 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
             <Button
               label="remove Element"
               onPress={() => {
-                ref.current?.animateNextTransition();
+                if (ref.current) {
+                  ref.current.animateNextTransition();
+                }
                 setCart(cart.filter(i => i.id !== 2));
               }}
               variant="primary"
