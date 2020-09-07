@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Text, BorderlessTab, RoundedIcon } from "../../components";
 import { useTheme } from "@shopify/restyle";
+import Checkbox from "../../components/Form/Checkbox";
 
 interface WidgetProps {
   price: number;
@@ -8,6 +9,7 @@ interface WidgetProps {
   onPress: () => void;
 }
 const Widget = ({ price, percentage, onPress }: WidgetProps) => {
+  const [isChecked, setIsChecked] = useState(false);
   const donation = (price * percentage).toFixed(2);
   const theme = useTheme();
   return (
@@ -49,7 +51,17 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
               />
             </Box>
           </BorderlessTab>
-          <Box alignItems="flex-end">
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="center"
+            paddingTop="s"
+          >
+            <Checkbox
+              checked={isChecked}
+              label="donate"
+              onChange={() => setIsChecked(prev => !prev)}
+            />
             <Text variant="description">{`${donation} €`}</Text>
           </Box>
         </Box>
