@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { View } from "react-native";
 import { CartNavigationProps } from "../../components/Navigation";
 import {
@@ -18,7 +18,7 @@ const transition = (
 const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
   const ref = useRef<TransitioningView>(null);
   const theme = useTheme();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (ref.current) ref.current.animateNextTransition();
   }, []);
   return (
