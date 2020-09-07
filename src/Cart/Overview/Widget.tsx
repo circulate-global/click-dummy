@@ -5,8 +5,9 @@ import { useTheme } from "@shopify/restyle";
 interface WidgetProps {
   price: number;
   percentage: number;
+  onPress: () => void;
 }
-const Widget = ({ price, percentage }: WidgetProps) => {
+const Widget = ({ price, percentage, onPress }: WidgetProps) => {
   const donation = (price * percentage).toFixed(2);
   const theme = useTheme();
   return (
@@ -33,7 +34,7 @@ const Widget = ({ price, percentage }: WidgetProps) => {
         </Box>
         <Box flex={1} padding="m">
           <Text>I'm investing for a plastic free future!</Text>
-          <BorderlessTab onPress={() => null}>
+          <BorderlessTab {...{ onPress }}>
             <Box
               flexDirection="row"
               alignItems="center"

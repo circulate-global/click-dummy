@@ -1,10 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View } from "react-native";
 import { LoadAssets } from "./src/components";
 import { ThemeProvider } from "./src/components/Theme";
 import { CartNavigator } from "./src/Cart";
+import Modal from "./src/Modal";
 import { ContextWrapper } from "./src/context";
+import { AppRoutes } from "./src/components/Navigation";
 
 const fonts = {
   "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
@@ -15,6 +18,8 @@ const fonts = {
   "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
   "Roboto-MediumItalic": require("./assets/fonts/Roboto-MediumItalic.ttf")
 };
+
+const AppStack = createStackNavigator<AppRoutes>();
 
 export default function App() {
   return (
@@ -27,7 +32,10 @@ export default function App() {
       <ContextWrapper>
         <ThemeProvider>
           <LoadAssets {...{ fonts }}>
-            <CartNavigator />
+            <AppStack.Navigator headerMode="none" mode="modal">
+              <AppStack.Screen name="Cart" component={CartNavigator} />
+              <AppStack.Screen name="Modal" component={Modal} />
+            </AppStack.Navigator>
           </LoadAssets>
         </ThemeProvider>
       </ContextWrapper>

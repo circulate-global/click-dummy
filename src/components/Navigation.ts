@@ -8,9 +8,11 @@ export interface CartNavigationProps<RouteName extends keyof CartRoutes> {
 
 export type AppRoutes = {
   Cart: undefined;
+  Modal: undefined;
 };
 
 export type CartRoutes = {
   Overview: undefined;
   CheckOut: undefined;
+  Modal: undefined;
 };

@@ -7,7 +7,7 @@ interface BorderlessTapProps {
 }
 
 const BorderlessTap = ({ children, onPress }: BorderlessTapProps) => {
-  return <BorderlessButton>{children}</BorderlessButton>;
+  return <BorderlessButton {...{ onPress }}>{children}</BorderlessButton>;
 };
 
 export default BorderlessTap;

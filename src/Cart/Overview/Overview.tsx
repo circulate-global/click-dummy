@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, ScrollView } from "react-native";
-import { Box, Button, Text } from "../../components";
+import { Box, Button, Text, Footer } from "../../components";
 import { CartNavigationProps } from "../../components/Navigation";
 import CartItem from "./CartItem";
 import {
@@ -40,7 +40,6 @@ const defaultCart = [
 
 const transition = (
   <Transition.Together>
-    <Transition.In type="slide-left" delayMs={1000} />
     <Transition.Change delayMs={500} />
     <Transition.Out
       type="slide-right"
@@ -58,6 +57,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   const totalPrice = parseFloat(
     cart.reduce((n, { amount, price }) => n + amount * price, 0).toFixed(2)
   );
+  const onWidgetPress = () => navigation.navigate("Modal");
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <ScrollView
@@ -81,7 +81,11 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
               }}
               variant="primary"
             />
-            <Widget price={totalPrice} percentage={0.03} />
+            <Widget
+              price={totalPrice}
+              percentage={0.03}
+              onPress={onWidgetPress}
+            />
           </Box>
         </Transitioning.View>
       </ScrollView>
@@ -115,6 +119,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
             variant="default"
           />
         </Box>
+        <Footer backgroundColor="navigationPrimary" />
       </Box>
     </Box>
   );
