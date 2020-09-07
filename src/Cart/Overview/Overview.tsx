@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, ScrollView } from "react-native";
-import { Box, Button } from "../../components";
+import { Box, Button, Text } from "../../components";
 import { CartNavigationProps } from "../../components/Navigation";
 import CartItem from "./CartItem";
 import {
@@ -9,6 +9,7 @@ import {
   TransitioningView
 } from "react-native-reanimated";
 import { useTheme } from "@shopify/restyle";
+import Widget from "./Widget";
 
 const defaultCart = [
   {
@@ -54,6 +55,9 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   const [footerHeight, setFooterHeight] = useState(0);
   const ref = useRef<TransitioningView>(null);
   const theme = useTheme();
+  const totalPrice = parseFloat(
+    cart.reduce((n, { amount, price }) => n + amount * price, 0).toFixed(2)
+  );
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <ScrollView
@@ -64,7 +68,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
       >
         <Transitioning.View {...{ ref, transition }}>
           {cart.map(item => {
-            return <CartItem key={item.id} {...item} />;
+            return <CartItem key={item.id} cartItem={item} />;
           })}
           <Box justifyContent="center">
             <Button
@@ -77,6 +81,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
               }}
               variant="primary"
             />
+            <Widget price={totalPrice} percentage={0.03} />
           </Box>
         </Transitioning.View>
       </ScrollView>
@@ -92,12 +97,18 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
         }) => setFooterHeight(height)}
       >
         <Box
-          height={100}
           padding={"m"}
           backgroundColor="navigationPrimary"
           borderTopLeftRadius={theme.spacing.m}
           borderTopRightRadius={theme.spacing.m}
         >
+          <Box
+            flexDirection="row"
+            justifyContent="flex-start"
+            paddingBottom="m"
+          >
+            <Text color="mainBackground">{`Gesamtbetrag: ${totalPrice} €`}</Text>
+          </Box>
           <Button
             label="go to CheckOut"
             onPress={() => navigation.push("CheckOut")}

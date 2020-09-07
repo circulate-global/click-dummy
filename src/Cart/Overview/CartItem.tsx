@@ -4,12 +4,15 @@ import { useTheme } from "@shopify/restyle";
 import { RoundedIconButton } from "../../components";
 
 export interface CartItemProps {
-  id: number;
-  title: string;
-  amount: number;
-  price: number;
+  cartItem: {
+    id: number;
+    title: string;
+    amount: number;
+    price: number;
+  };
 }
-const CartItem = ({ title, amount: defaultAmount, price }: CartItemProps) => {
+const CartItem = ({ cartItem }: CartItemProps) => {
+  const { title, amount: defaultAmount, price } = cartItem;
   const [amount, setAmount] = useState(defaultAmount);
   const theme = useTheme();
   return (
@@ -34,7 +37,10 @@ const CartItem = ({ title, amount: defaultAmount, price }: CartItemProps) => {
             color="cartItemBackground"
             backgroundColor="cartItemForeground"
             size={30}
-            onPress={() => setAmount(prev => (prev > 1 ? prev - 1 : 0))}
+            onPress={() => {
+              setAmount(prev => (prev > 1 ? prev - 1 : 0));
+              cartItem.amount = amount > 1 ? amount - 1 : 0;
+            }}
           />
           <Text color="cartItemForeground" paddingHorizontal={"s"}>
             {amount}
@@ -44,7 +50,10 @@ const CartItem = ({ title, amount: defaultAmount, price }: CartItemProps) => {
             color="cartItemBackground"
             backgroundColor="cartItemForeground"
             size={30}
-            onPress={() => setAmount(prev => prev + 1)}
+            onPress={() => {
+              setAmount(prev => prev + 1);
+              cartItem.amount = amount + 1;
+            }}
           />
         </Box>
         <Box>

@@ -1,0 +1,60 @@
+import React from "react";
+import { Box, Text, BorderlessTab, RoundedIcon } from "../../components";
+import { useTheme } from "@shopify/restyle";
+
+interface WidgetProps {
+  price: number;
+  percentage: number;
+}
+const Widget = ({ price, percentage }: WidgetProps) => {
+  const donation = (price * percentage).toFixed(2);
+  const theme = useTheme();
+  return (
+    <Box
+      paddingVertical="m"
+      borderBottomWidth={2}
+      borderBottomColor="buttonPrimary"
+      marginBottom="m"
+    >
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Box
+          height={100}
+          width={100}
+          backgroundColor="buttonPrimary"
+          justifyContent="center"
+          alignItems="center"
+          borderRadius={theme.spacing.m}
+        >
+          <Text color="mainBackground">circulate</Text>
+        </Box>
+        <Box flex={1} padding="m">
+          <Text>I'm investing for a plastic free future!</Text>
+          <BorderlessTab onPress={() => null}>
+            <Box
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="flex-start"
+            >
+              <Text color="buttonPrimary">see my impact</Text>
+              <RoundedIcon
+                name="info"
+                size={25}
+                color="buttonPrimary"
+                backgroundColor="mainBackground"
+              />
+            </Box>
+          </BorderlessTab>
+          <Box alignItems="flex-end">
+            <Text variant="description">{`${donation} €`}</Text>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default Widget;
