@@ -6,6 +6,11 @@ export interface CartNavigationProps<RouteName extends keyof CartRoutes> {
   route: RouteProp<CartRoutes, RouteName>;
 }
 
+export interface AppNavigationProps<RouteName extends keyof AppRoutes> {
+  navigation: StackNavigationProp<AppRoutes, RouteName>;
+  route: RouteProp<AppRoutes, RouteName>;
+}
+
 export type AppRoutes = {
   Cart: undefined;
   Modal: undefined;

@@ -1,14 +1,15 @@
 import React from "react";
 import { Image, Dimensions, ScrollView } from "react-native";
-import { Box, Text, Footer } from "../components";
+import { Box, Text, Footer, RoundedIconButton } from "../components";
+import { AppNavigationProps } from "../components/Navigation";
 
 const { width } = Dimensions.get("window");
 
-const Modal = () => {
+const Modal = ({ navigation }: AppNavigationProps<"Modal">) => {
   const height = (width * 522) / 800;
   return (
     <Box backgroundColor="mainBackground">
-      <ScrollView contentContainerStyle={{}}>
+      <ScrollView>
         <Image
           source={require("../../assets/example.jpg")}
           style={{ width, height }}
@@ -40,6 +41,15 @@ const Modal = () => {
           </Text>
         </Box>
       </ScrollView>
+      <Box position="absolute" top={40} left={20}>
+        <RoundedIconButton
+          name="chevron-left"
+          size={40}
+          backgroundColor="mainBackground"
+          color="mainForeground"
+          onPress={() => navigation.goBack()}
+        />
+      </Box>
     </Box>
   );
 };
