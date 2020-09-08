@@ -6,3 +6,4 @@ export { default as RoundedIconButton } from "./RoundedIconButton";
 export { default as Switch } from "./Switch";
 export { default as BorderlessTab } from "./BorderlessTab";
 export { default as Footer } from "./Footer";
+export { default as AnimatedBoxExample } from "./AnimatedBoxExample";

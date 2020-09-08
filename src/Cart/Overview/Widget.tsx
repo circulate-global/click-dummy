@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Box, Text, BorderlessTab, RoundedIcon } from "../../components";
+import {
+  Box,
+  Text,
+  BorderlessTab,
+  RoundedIcon,
+  AnimatedBoxExample
+} from "../../components";
 import { useTheme } from "@shopify/restyle";
 import Checkbox from "../../components/Form/Checkbox";
 
@@ -66,6 +72,7 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
           </Box>
         </Box>
       </Box>
+      <AnimatedBoxExample />
     </Box>
   );
 };
