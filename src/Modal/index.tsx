@@ -3,12 +3,13 @@ import { Image, Dimensions, ScrollView } from "react-native";
 import { Box, Text, Footer, RoundedIconButton } from "../components";
 import { AppNavigationProps } from "../components/Navigation";
 
-const { width } = Dimensions.get("window");
+const { width: wWidth } = Dimensions.get("window");
 
 const Modal = ({ navigation }: AppNavigationProps<"Modal">) => {
+  const width = wWidth > 500 ? 500 : wWidth;
   const height = (width * 522) / 800;
   return (
-    <Box backgroundColor="mainBackground">
+    <Box flex={1} backgroundColor="mainBackground">
       <ScrollView>
         <Image
           source={require("../../assets/example.jpg")}
