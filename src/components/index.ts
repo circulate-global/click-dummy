@@ -6,4 +6,8 @@ export { default as RoundedIconButton } from "./RoundedIconButton";
 export { default as Switch } from "./Switch";
 export { default as BorderlessTab } from "./BorderlessTab";
 export { default as Footer } from "./Footer";
-export { default as AnimatedBoxExample } from "./AnimatedBoxExample";
+export { default as TouchableResize } from "./TouchableResize";
+
+export { default as Checkbox } from "./Form/Checkbox";
+
+export { default as AnimatedBoxExample } from "./Animations/AnimatedBoxExample";

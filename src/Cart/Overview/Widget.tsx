@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import {
   Box,
   Text,
-  BorderlessTab,
   RoundedIcon,
-  AnimatedBoxExample
+  Checkbox,
+  TouchableResize
 } from "../../components";
 import { useTheme } from "@shopify/restyle";
-import Checkbox from "../../components/Form/Checkbox";
 
 interface WidgetProps {
   price: number;
@@ -42,21 +41,23 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
         </Box>
         <Box flex={1} padding="m">
           <Text>I'm investing for a plastic free future!</Text>
-          <BorderlessTab {...{ onPress }}>
-            <Box
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="flex-start"
-            >
-              <Text color="buttonPrimary">see my impact</Text>
-              <RoundedIcon
-                name="info"
-                size={25}
-                color="buttonPrimary"
-                backgroundColor="mainBackground"
-              />
-            </Box>
-          </BorderlessTab>
+          <Box alignItems="flex-start">
+            <TouchableResize {...{ onPress }}>
+              <Box
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="flex-start"
+              >
+                <Text color="buttonPrimary">see my impact</Text>
+                <RoundedIcon
+                  name="info"
+                  size={25}
+                  color="buttonPrimary"
+                  backgroundColor="mainBackground"
+                />
+              </Box>
+            </TouchableResize>
+          </Box>
           <Box
             flexDirection="row"
             justifyContent="space-between"
@@ -72,7 +73,6 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
           </Box>
         </Box>
       </Box>
-      <AnimatedBoxExample />
     </Box>
   );
 };
