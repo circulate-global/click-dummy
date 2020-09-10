@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text } from "../../components";
+import { Box, Text, BorderlessTap, RoundedIcon } from "../../components";
 import { useTheme } from "@shopify/restyle";
 import { RoundedIconButton } from "../../components";
 import { ItemProps } from "./Overview";
@@ -9,8 +9,7 @@ export interface CartItemProps {
   onChange: () => void;
 }
 const CartItem = ({ cartItem, onChange }: CartItemProps) => {
-  const { title, amount: defaultAmount, price } = cartItem;
-  const [amount, setAmount] = useState(defaultAmount);
+  const { title, amount, price } = cartItem;
   const theme = useTheme();
   return (
     <Box
@@ -35,7 +34,6 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
             backgroundColor="cartItemForeground"
             size={30}
             onPress={() => {
-              setAmount(prev => (prev > 1 ? prev - 1 : 0));
               cartItem.amount = amount > 1 ? amount - 1 : 0;
               onChange();
             }}
@@ -49,14 +47,23 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
             backgroundColor="cartItemForeground"
             size={30}
             onPress={() => {
-              setAmount(prev => prev + 1);
               cartItem.amount = amount + 1;
               onChange();
             }}
           />
         </Box>
-        <Box>
-          {amount > 1 && <Text variant="description">{`${price} €`}</Text>}
+        <Box flexDirection="column">
+          <Text variant="description">{`${price} €`}</Text>
+          <BorderlessTap
+            onPress={() => {
+              cartItem.amount = -1;
+              onChange();
+            }}
+          >
+            <Box paddingTop="s">
+              <Text variant="description">delete</Text>
+            </Box>
+          </BorderlessTap>
         </Box>
       </Box>
     </Box>

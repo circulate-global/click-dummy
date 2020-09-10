@@ -84,7 +84,15 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
         <Transitioning.View {...{ ref, transition }}>
           {cart.map((item, idx) => {
             const onItemChange = () => {
-              cart[idx] = item;
+              if (item.amount === -1) {
+                setCart(cart.filter(i => i.id !== item.id));
+                if (ref.current) {
+                  ref.current.animateNextTransition();
+                }
+              } else {
+                cart[idx] = item;
+                setCart(cart);
+              }
               setTotalPrice(getTotalPrice(cart));
             };
             return (
@@ -92,16 +100,6 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
             );
           })}
           <Box justifyContent="center">
-            <Button
-              label="remove Element"
-              onPress={() => {
-                if (ref.current) {
-                  ref.current.animateNextTransition();
-                }
-                setCart(cart.filter(i => i.id !== 2));
-              }}
-              variant="primary"
-            />
             <Widget
               price={totalPrice}
               percentage={0.03}
