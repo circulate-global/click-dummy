@@ -49,15 +49,30 @@ const transition = (
   </Transition.Together>
 );
 
+export interface ItemProps {
+  id: number;
+  title: string;
+  amount: number;
+  price: number;
+}
+
+const getTotalPrice = (cart: ItemProps[]) =>
+  parseFloat(
+    cart.reduce((n, { amount, price }) => n + amount * price, 0).toFixed(2)
+  );
+
 const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   const [cart, setCart] = useState(defaultCart);
+  const [totalPrice, setTotalPrice] = useState(getTotalPrice(cart));
   const [footerHeight, setFooterHeight] = useState(0);
   const ref = useRef<TransitioningView>(null);
   const theme = useTheme();
-  const totalPrice = parseFloat(
-    cart.reduce((n, { amount, price }) => n + amount * price, 0).toFixed(2)
-  );
   const onWidgetPress = () => navigation.navigate("Modal");
+
+  useEffect(() => {
+    setTotalPrice(getTotalPrice(cart));
+  }, [cart]);
+
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <ScrollView
@@ -67,8 +82,14 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
         }}
       >
         <Transitioning.View {...{ ref, transition }}>
-          {cart.map(item => {
-            return <CartItem key={item.id} cartItem={item} />;
+          {cart.map((item, idx) => {
+            const onItemChange = () => {
+              cart[idx] = item;
+              setTotalPrice(getTotalPrice(cart));
+            };
+            return (
+              <CartItem key={item.id} cartItem={item} onChange={onItemChange} />
+            );
           })}
           <Box justifyContent="center">
             <Button
