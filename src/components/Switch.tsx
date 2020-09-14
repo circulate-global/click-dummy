@@ -8,9 +8,7 @@ interface SwitchProps extends RNSwitchPRops {
 const Switch = ({ variant, ...props }: SwitchProps) => {
   const theme = useTheme();
   const color =
-    variant === "default"
-      ? theme.colors.buttonPrimary
-      : theme.colors.buttonSecondary;
+    variant === "default" ? theme.colors.primary : theme.colors.secondary;
   return <RNSwitch thumbColor={color} {...props} />;
 };
 

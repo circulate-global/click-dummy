@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { LoadAssets } from "./src/components";
 import { ThemeProvider } from "./src/components/Theme";
 import { CartNavigator } from "./src/Cart";
+import { assets as overviewAssets } from "./src/Cart/Overview";
 import Modal from "./src/Modal";
 import { ContextWrapper } from "./src/context";
 import { AppRoutes } from "./src/components/Navigation";
@@ -19,6 +20,8 @@ const fonts = {
   "Roboto-MediumItalic": require("./assets/fonts/Roboto-MediumItalic.ttf")
 };
 
+const assets = [...overviewAssets];
+
 const AppStack = createStackNavigator<AppRoutes>();
 
 export default function App() {
@@ -31,7 +34,7 @@ export default function App() {
     >
       <ContextWrapper>
         <ThemeProvider>
-          <LoadAssets {...{ fonts }}>
+          <LoadAssets {...{ fonts, assets }}>
             <AppStack.Navigator headerMode="none" mode="modal">
               <AppStack.Screen name="Cart" component={CartNavigator} />
               <AppStack.Screen name="Modal" component={Modal} />

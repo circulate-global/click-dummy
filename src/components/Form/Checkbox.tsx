@@ -12,7 +12,7 @@ interface CheckboxProps {
 
 const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
   const theme = useTheme<Theme>();
-  const color = checked ? theme.colors.baseTitle : theme.colors.mainBackground;
+  const color = checked ? theme.colors.primary : theme.colors.mainBackground;
   return (
     <BorderlessButton
       onPress={() => onChange()}
@@ -26,13 +26,15 @@ const Checkbox = ({ label, onChange, checked }: CheckboxProps) => {
           justifyContent="center"
           alignItems="center"
           borderWidth={1}
-          borderColor="baseText"
+          borderColor="primary"
           borderRadius={theme.spacing.m}
           style={{ backgroundColor: color }}
         >
           <Icon name="check" color={theme.colors.mainBackground} />
         </Box>
-        <Text variant="description">{label}</Text>
+        <Text variant="description" color="primary">
+          {label}
+        </Text>
       </Box>
     </BorderlessButton>
   );

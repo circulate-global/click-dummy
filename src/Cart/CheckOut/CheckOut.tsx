@@ -24,14 +24,8 @@ const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
   return (
     <Box flex={1} backgroundColor="mainBackground" justifyContent="flex-end">
       <Transitioning.View {...{ ref, transition }}>
-        <Box
-          height={200}
-          width={"auto"}
-          backgroundColor="navigationPrimary"
-          borderTopLeftRadius={theme.spacing.m}
-          borderTopRightRadius={theme.spacing.m}
-        />
-        <Footer backgroundColor="navigationPrimary" />
+        <Box height={200} width={"auto"} backgroundColor="secondary" />
+        <Footer backgroundColor="secondary" />
       </Transitioning.View>
     </Box>
   );

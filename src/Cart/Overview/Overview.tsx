@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, ScrollView } from "react-native";
-import { Box, Button, Text, Footer } from "../../components";
+import { Box, Button, Text, Footer, Theme } from "../../components";
 import { CartNavigationProps } from "../../components/Navigation";
 import CartItem from "./CartItem";
 import {
@@ -11,30 +11,46 @@ import {
 import { useTheme } from "@shopify/restyle";
 import Widget from "./Widget";
 
+const PERCENTAGE = 0.03;
+
+export const assets = [require("../../../assets/example.jpg")];
+
 const defaultCart = [
   {
     id: 0,
     title: "Sneakers",
     amount: 1,
-    price: 4.45
+    price: 4.45,
+    delivery: "1-3",
+    size: "600ml",
+    source: assets[0]
   },
   {
     id: 1,
     title: "Chips",
     amount: 2,
-    price: 1.95
+    price: 1.95,
+    delivery: "1-4",
+    size: "600ml",
+    source: assets[0]
   },
   {
     id: 2,
     title: "Potato",
     amount: 1,
-    price: 0.45
+    price: 0.45,
+    delivery: "1-5",
+    size: "600ml",
+    source: assets[0]
   },
   {
     id: 3,
     title: "Tomato",
     amount: 2,
-    price: 0.85
+    price: 0.85,
+    delivery: "3-4",
+    size: "600ml",
+    source: assets[0]
   }
 ];
 
@@ -54,6 +70,9 @@ export interface ItemProps {
   title: string;
   amount: number;
   price: number;
+  delivery: string;
+  size: string;
+  source: number;
 }
 
 const getTotalPrice = (cart: ItemProps[]) =>
@@ -65,9 +84,11 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   const [cart, setCart] = useState(defaultCart);
   const [totalPrice, setTotalPrice] = useState(getTotalPrice(cart));
   const [footerHeight, setFooterHeight] = useState(0);
+  const [isChecked, setIsChecked] = useState(false);
   const ref = useRef<TransitioningView>(null);
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const onWidgetPress = () => navigation.navigate("Modal");
+  const onWidgetToggle = () => setIsChecked(prev => !prev);
 
   useEffect(() => {
     setTotalPrice(getTotalPrice(cart));
@@ -77,8 +98,10 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
     <Box flex={1} backgroundColor="mainBackground">
       <ScrollView
         contentContainerStyle={{
-          paddingHorizontal: theme.spacing.m,
-          paddingBottom: footerHeight
+          paddingHorizontal: theme.spacing.m
+        }}
+        style={{
+          marginBottom: footerHeight
         }}
       >
         <Transitioning.View {...{ ref, transition }}>
@@ -102,8 +125,9 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
           <Box justifyContent="center">
             <Widget
               price={totalPrice}
-              percentage={0.03}
+              percentage={PERCENTAGE}
               onPress={onWidgetPress}
+              onToggle={onWidgetToggle}
             />
           </Box>
         </Transitioning.View>
@@ -120,25 +144,29 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
         }) => setFooterHeight(height)}
       >
         <Box
-          padding={"m"}
-          backgroundColor="navigationPrimary"
-          borderTopLeftRadius={theme.spacing.m}
-          borderTopRightRadius={theme.spacing.m}
+          marginHorizontal="m"
+          paddingVertical="m"
+          backgroundColor="mainBackground"
+          borderTopWidth={2}
+          borderColor="secondary"
         >
           <Box
             flexDirection="row"
-            justifyContent="flex-start"
+            justifyContent="space-between"
             paddingBottom="m"
           >
-            <Text color="mainBackground">{`Gesamtbetrag: ${totalPrice} €`}</Text>
+            <Text color="baseTitle">Gesamtbetrag</Text>
+            <Text color="baseTitle">{`${(
+              totalPrice * (isChecked ? 1 + PERCENTAGE : 1)
+            ).toFixed(2)} €`}</Text>
           </Box>
           <Button
-            label="go to CheckOut"
+            label="zur Kasse"
             onPress={() => navigation.push("CheckOut")}
-            variant="default"
+            variant="primary"
           />
         </Box>
-        <Footer backgroundColor="navigationPrimary" />
+        <Footer backgroundColor="mainBackground" />
       </Box>
     </Box>
   );

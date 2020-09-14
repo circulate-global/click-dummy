@@ -1,1 +1,1 @@
-export { default } from "./Overview";
+export { default, assets } from "./Overview";

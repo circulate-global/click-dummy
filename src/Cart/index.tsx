@@ -17,22 +17,33 @@ export const CartNavigator = () => {
     <CartStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.colors.navigationPrimary
+          backgroundColor: theme.colors.mainBackground
         },
-        headerTintColor: theme.colors.navigationSecondary,
+        headerTitleStyle: {
+          fontFamily: "Roboto-Medium"
+        },
+        headerTintColor: theme.colors.secondary,
         headerRight: () => (
           <RoundedIconButton
             onPress={toggleDarkMode}
             name={darkMode ? "sun" : "moon"}
             size={40}
-            color="navigationSecondary"
-            backgroundColor="navigationPrimary"
+            color="secondary"
+            backgroundColor="mainBackground"
           />
         )
       }}
     >
-      <CartStack.Screen name="Overview" component={Overview} />
-      <CartStack.Screen name="CheckOut" component={CheckOut} />
+      <CartStack.Screen
+        name="Overview"
+        component={Overview}
+        options={{ title: "Warenkorb" }}
+      />
+      <CartStack.Screen
+        name="CheckOut"
+        component={CheckOut}
+        options={{ title: "Kasse" }}
+      />
     </CartStack.Navigator>
   );
 };

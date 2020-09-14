@@ -12,8 +12,9 @@ interface WidgetProps {
   price: number;
   percentage: number;
   onPress: () => void;
+  onToggle: () => void;
 }
-const Widget = ({ price, percentage, onPress }: WidgetProps) => {
+const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
   const [isChecked, setIsChecked] = useState(false);
   const donation = (price * percentage).toFixed(2);
   const theme = useTheme();
@@ -21,38 +22,34 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
     <Box
       paddingVertical="m"
       borderBottomWidth={2}
-      borderBottomColor="buttonPrimary"
+      borderBottomColor="primary"
       marginBottom="m"
     >
-      <Box
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Box flexDirection="row" justifyContent="space-between">
         <Box
           height={100}
           width={100}
-          backgroundColor="buttonPrimary"
+          backgroundColor="primary"
           justifyContent="center"
           alignItems="center"
           borderRadius={theme.spacing.m}
         >
           <Text color="mainBackground">circulate</Text>
         </Box>
-        <Box flex={1} padding="m">
+        <Box flex={1} paddingLeft="m">
           <Text>I'm investing for a plastic free future!</Text>
-          <Box alignItems="flex-start">
+          <Box alignItems="flex-start" paddingVertical="s">
             <TouchableResize {...{ onPress }}>
               <Box
                 flexDirection="row"
                 alignItems="center"
                 justifyContent="flex-start"
               >
-                <Text color="buttonPrimary">see my impact</Text>
+                <Text color="tercery">see my impact</Text>
                 <RoundedIcon
                   name="info"
                   size={25}
-                  color="buttonPrimary"
+                  color="tercery"
                   backgroundColor="mainBackground"
                 />
               </Box>
@@ -66,10 +63,15 @@ const Widget = ({ price, percentage, onPress }: WidgetProps) => {
           >
             <Checkbox
               checked={isChecked}
-              label="donate"
-              onChange={() => setIsChecked(prev => !prev)}
+              label="Mitwirken"
+              onChange={() => {
+                setIsChecked(prev => !prev);
+                onToggle();
+              }}
             />
-            <Text variant="description">{`${donation} €`}</Text>
+            <Text
+              variant={isChecked ? "subtitle1" : "subtitle2"}
+            >{`${donation} €`}</Text>
           </Box>
         </Box>
       </Box>

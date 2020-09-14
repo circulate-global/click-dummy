@@ -20,6 +20,10 @@ const palette = {
   redPrimary: "#F95738",
   redDark: "#631303",
 
+  purpleLight: "#B09BC5",
+  purplePrimary: "#481878",
+  purpleDark: "#2F0F4F",
+
   black: "#0B0B0B",
   white: "#F0F2F3"
 };
@@ -28,14 +32,11 @@ const theme = createTheme({
   colors: {
     mainBackground: palette.white,
     mainForeground: palette.black,
+    primary: palette.redPrimary,
+    secondary: palette.bluePrimary,
+    tercery: palette.purplePrimary,
     baseText: palette.black,
-    baseTitle: palette.bluePrimary,
-    cartItemBackground: palette.yellowLight,
-    cartItemForeground: palette.blueDark,
-    buttonPrimary: palette.redPrimary,
-    buttonSecondary: palette.bluePrimary,
-    navigationPrimary: palette.bluePrimary,
-    navigationSecondary: palette.yellowLight
+    baseTitle: palette.bluePrimary
   },
   spacing: {
     s: 8,
@@ -52,7 +53,12 @@ const theme = createTheme({
     subtitle1: {
       fontSize: 26,
       fontFamily: "Roboto-Medium",
-      color: "baseTitle"
+      color: "baseText"
+    },
+    subtitle2: {
+      fontSize: 26,
+      fontFamily: "Roboto-Light",
+      color: "baseText"
     },
     body: {
       fontSize: 18,
@@ -62,14 +68,13 @@ const theme = createTheme({
     button: {
       fontSize: 18,
       fontFamily: "Roboto-MediumItalic",
-      color: "buttonPrimary",
+      color: "secondary",
       textAlign: "center"
     },
     description: {
       fontSize: 15,
       fontFamily: "Roboto-LightItalic",
-      color: "baseTitle",
-      textAlign: "center"
+      color: "baseText"
     }
   },
   breakpoints: {
@@ -83,14 +88,11 @@ const darkTheme = {
   colors: {
     mainBackground: palette.bluePrimary,
     mainForeground: palette.white,
+    primary: palette.redPrimary,
+    secondary: palette.yellowPrimary,
+    tercery: palette.yellowPrimary,
     baseText: palette.white,
-    baseTitle: palette.yellowLight,
-    cartItemBackground: palette.bluePrimary,
-    cartItemForeground: palette.yellowLight,
-    buttonPrimary: palette.redPrimary,
-    buttonSecondary: palette.yellowLight,
-    navigationPrimary: palette.yellowLight,
-    navigationSecondary: palette.bluePrimary
+    baseTitle: palette.yellowLight
   }
 };
 
