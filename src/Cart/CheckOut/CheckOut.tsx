@@ -5,7 +5,14 @@ import {
   Transitioning,
   TransitioningView
 } from "react-native-reanimated";
-import { Box, Footer, Button } from "../../components";
+import {
+  Box,
+  Footer,
+  Button,
+  BorderlessTap,
+  Text,
+  RoundedIcon
+} from "../../components";
 import { useTheme } from "@shopify/restyle";
 
 const transition = (
@@ -21,7 +28,27 @@ const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
     if (ref.current) ref.current.animateNextTransition();
   }, []);
   return (
-    <Box flex={1} backgroundColor="mainBackground" justifyContent="flex-end">
+    <Box
+      flex={1}
+      backgroundColor="mainBackground"
+      justifyContent="space-between"
+    >
+      <BorderlessTap onPress={() => navigation.navigate("Overview")}>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="flex-start"
+          padding="m"
+        >
+          <RoundedIcon
+            name="arrow-left"
+            size={20}
+            color="mainForeground"
+            backgroundColor="mainBackground"
+          />
+          <Text>zurück</Text>
+        </Box>
+      </BorderlessTap>
       <Transitioning.View {...{ ref, transition }}>
         <Box
           height={200}

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Box,
   Text,
   RoundedIcon,
   Checkbox,
-  TouchableResize
+  TouchableResize,
+  Theme
 } from "../../components";
 import { useTheme } from "@shopify/restyle";
+import ConfettiCannon from "react-native-confetti-cannon";
 
 interface WidgetProps {
   price: number;
@@ -16,8 +18,15 @@ interface WidgetProps {
 }
 const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
   const [isChecked, setIsChecked] = useState(false);
+  const explosion = useRef(null);
   const donation = (price * percentage).toFixed(2);
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
+  useEffect(() => {
+    if (isChecked && explosion.current) {
+      // @ts-ignore
+      explosion.current.start();
+    }
+  }, [isChecked]);
   return (
     <Box
       paddingVertical="m"
@@ -78,8 +87,23 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
           </Box>
         </Box>
       </Box>
+      {isChecked && (
+        <ConfettiCannon
+          count={200}
+          origin={{ x: -40, y: 0 }}
+          fallSpeed={2000}
+          autoStart={false}
+          autoStartDelay={500}
+          colors={[
+            theme.colors.primary,
+            theme.colors.secondary,
+            theme.colors.tercery
+          ]}
+          ref={explosion}
+        />
+      )}
     </Box>
   );
 };
 
-export default Widget;
+export default React.memo(Widget);
