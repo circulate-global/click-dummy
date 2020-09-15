@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RoundedIconButton, Theme } from "../components";
+import { RoundedIconButton, Theme, RoundedIcon, Box } from "../components";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CartRoutes } from "../components/Navigation";
 
@@ -23,14 +23,26 @@ export const CartNavigator = () => {
           fontFamily: "PangeaTrial-Medium"
         },
         headerTintColor: theme.colors.mainForeground,
+        headerLeft: () => (
+          <Box paddingLeft="s">
+            <RoundedIcon
+              name={"menu"}
+              size={40}
+              color="mainForeground"
+              backgroundColor="mainBackground"
+            />
+          </Box>
+        ),
         headerRight: () => (
-          <RoundedIconButton
-            onPress={toggleDarkMode}
-            name={darkMode ? "sun" : "moon"}
-            size={40}
-            color="secondary"
-            backgroundColor="mainBackground"
-          />
+          <Box paddingRight="s">
+            <RoundedIconButton
+              onPress={toggleDarkMode}
+              name={darkMode ? "sun" : "moon"}
+              size={40}
+              color="secondary"
+              backgroundColor="mainBackground"
+            />
+          </Box>
         )
       }}
     >
