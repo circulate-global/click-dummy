@@ -148,17 +148,17 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
           paddingVertical="m"
           backgroundColor="mainBackground"
           borderTopWidth={2}
-          borderColor="secondary"
+          borderColor="mainForeground"
         >
           <Box
             flexDirection="row"
             justifyContent="space-between"
             paddingBottom="m"
           >
-            <Text color="baseTitle">Gesamtbetrag</Text>
-            <Text color="baseTitle">{`${(
-              totalPrice * (isChecked ? 1 + PERCENTAGE : 1)
-            ).toFixed(2)} €`}</Text>
+            <Text>Gesamtbetrag</Text>
+            <Text>{`€ ${(totalPrice * (isChecked ? 1 + PERCENTAGE : 1)).toFixed(
+              2
+            )}`}</Text>
           </Box>
           <Button
             label="zur Kasse"

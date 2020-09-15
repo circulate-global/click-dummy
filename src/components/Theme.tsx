@@ -8,24 +8,13 @@ import {
 import { DarkModeContext } from "../context";
 
 const palette = {
-  blueLight: "#4A9CE8",
-  bluePrimary: "#0D3B66",
-  blueDark: "#071F36",
-
-  yellowLight: "#F6DB79",
-  yellowPrimary: "#F4D35E",
-  yellowDark: "#997A0B",
-
-  redLight: "#FA8B75",
-  redPrimary: "#F95738",
-  redDark: "#631303",
-
-  purpleLight: "#B09BC5",
-  purplePrimary: "#481878",
-  purpleDark: "#2F0F4F",
+  yellowPrimary: "#FFBD1E",
+  redPrimary: "#E07159",
+  purplePrimary: "#965E8E",
+  greenPrimary: "#A3C76C",
 
   black: "#0B0B0B",
-  white: "#F0F2F3"
+  white: "white"
 };
 
 const theme = createTheme({
@@ -33,10 +22,10 @@ const theme = createTheme({
     mainBackground: palette.white,
     mainForeground: palette.black,
     primary: palette.redPrimary,
-    secondary: palette.bluePrimary,
+    secondary: palette.greenPrimary,
     tercery: palette.purplePrimary,
     baseText: palette.black,
-    baseTitle: palette.bluePrimary
+    baseTitle: palette.greenPrimary
   },
   spacing: {
     s: 8,
@@ -47,33 +36,33 @@ const theme = createTheme({
   textVariants: {
     title1: {
       fontSize: 28,
-      fontFamily: "Roboto-Bold",
+      fontFamily: "PangeaTrial-Bold",
       color: "baseTitle"
     },
     subtitle1: {
       fontSize: 26,
-      fontFamily: "Roboto-Medium",
+      fontFamily: "PangeaTrial-Medium",
       color: "baseText"
     },
     subtitle2: {
       fontSize: 26,
-      fontFamily: "Roboto-Light",
+      fontFamily: "PangeaTrial-Light",
       color: "baseText"
     },
     body: {
       fontSize: 18,
-      fontFamily: "Roboto-Regular",
+      fontFamily: "PangeaTrial-Regular",
       color: "baseText"
     },
     button: {
       fontSize: 18,
-      fontFamily: "Roboto-MediumItalic",
+      fontFamily: "PangeaTrial-Regular",
       color: "secondary",
       textAlign: "center"
     },
     description: {
       fontSize: 15,
-      fontFamily: "Roboto-LightItalic",
+      fontFamily: "PangeaTrial-Light",
       color: "baseText"
     }
   },
@@ -86,13 +75,13 @@ const theme = createTheme({
 const darkTheme = {
   ...theme,
   colors: {
-    mainBackground: palette.bluePrimary,
+    mainBackground: palette.black,
     mainForeground: palette.white,
     primary: palette.redPrimary,
     secondary: palette.yellowPrimary,
     tercery: palette.yellowPrimary,
     baseText: palette.white,
-    baseTitle: palette.yellowLight
+    baseTitle: palette.yellowPrimary
   }
 };
 

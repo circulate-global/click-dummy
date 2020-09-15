@@ -70,8 +70,11 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
               }}
             />
             <Text
-              variant={isChecked ? "subtitle1" : "subtitle2"}
-            >{`${donation} €`}</Text>
+              variant={"subtitle2"}
+              style={{ opacity: isChecked ? 1 : 0.5 }}
+            >
+              {`€ ${donation}`}
+            </Text>
           </Box>
         </Box>
       </Box>

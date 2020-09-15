@@ -17,7 +17,7 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
       marginVertical="m"
       paddingBottom="m"
       borderBottomWidth={1}
-      borderColor="secondary"
+      borderColor="mainForeground"
       backgroundColor="mainBackground"
     >
       <Box flexDirection="row" marginBottom="m">
@@ -27,7 +27,8 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
             height: 100,
             borderWidth: 1,
             borderColor: theme.colors.mainForeground,
-            backgroundColor: "white"
+            backgroundColor: "white",
+            borderRadius: theme.spacing.m
           }}
           resizeMode="contain"
           {...{ source }}
@@ -36,7 +37,9 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
           <Text variant="subtitle2">{title}</Text>
           <Text variant="subtitle2">{size}</Text>
           <Text variant="description">{`Lieferzeit: in ca. ${delivery} Werktagen*`}</Text>
-          <Text variant="description">{`${price} €`}</Text>
+          <Text variant="description" style={{ opacity: 0.5 }}>
+            {`${price} €`}
+          </Text>
         </Box>
       </Box>
       <Box flexDirection="row" justifyContent="space-between">
@@ -99,7 +102,7 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
               <Text variant="description"> Entfernen</Text>
             </Box>
           </BorderlessTap>
-          <Text variant="subtitle1">{`${(price * amount).toFixed(2)} €`}</Text>
+          <Text variant="subtitle2">{`€ ${(price * amount).toFixed(2)}`}</Text>
         </Box>
       </Box>
     </Box>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RoundedIconButton } from "../components";
+import { RoundedIconButton, Theme } from "../components";
 import { createStackNavigator } from "@react-navigation/stack";
 import { CartRoutes } from "../components/Navigation";
 
@@ -11,7 +11,7 @@ import { DarkModeContext } from "../context";
 const CartStack = createStackNavigator<CartRoutes>();
 
 export const CartNavigator = () => {
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   return (
     <CartStack.Navigator
@@ -20,9 +20,9 @@ export const CartNavigator = () => {
           backgroundColor: theme.colors.mainBackground
         },
         headerTitleStyle: {
-          fontFamily: "Roboto-Medium"
+          fontFamily: "PangeaTrial-Medium"
         },
-        headerTintColor: theme.colors.secondary,
+        headerTintColor: theme.colors.mainForeground,
         headerRight: () => (
           <RoundedIconButton
             onPress={toggleDarkMode}

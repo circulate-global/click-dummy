@@ -11,13 +11,11 @@ import { ContextWrapper } from "./src/context";
 import { AppRoutes } from "./src/components/Navigation";
 
 const fonts = {
-  "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
-  "Roboto-BoldItalic": require("./assets/fonts/Roboto-BoldItalic.ttf"),
-  "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
-  "Roboto-LightItalic": require("./assets/fonts/Roboto-LightItalic.ttf"),
-  "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-  "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
-  "Roboto-MediumItalic": require("./assets/fonts/Roboto-MediumItalic.ttf")
+  "PangeaTrial-Bold": require("./assets/fonts/PangeaTrial-Bold.otf"),
+  "PangeaTrial-Light": require("./assets/fonts/PangeaTrial-Light.otf"),
+  "PangeaTrial-Regular": require("./assets/fonts/PangeaTrial-Regular.otf"),
+  "PangeaTrial-Medium": require("./assets/fonts/PangeaTrial-Medium.otf"),
+  "PangeaTrial-SemiBold": require("./assets/fonts/PangeaTrial-SemiBold.otf")
 };
 
 const assets = [...overviewAssets];
