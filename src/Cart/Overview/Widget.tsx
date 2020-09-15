@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Props } from "react";
 import {
   Box,
   Text,
@@ -88,23 +88,30 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
           </Box>
         </Box>
       </Box>
-      {isChecked && (
-        <ConfettiCannon
-          count={200}
-          origin={{ x: -40, y: 0 }}
-          fallSpeed={2000}
-          autoStart={false}
-          autoStartDelay={500}
-          colors={[
-            theme.colors.primary,
-            theme.colors.secondary,
-            theme.colors.tercery
-          ]}
-          ref={explosion}
-        />
-      )}
+      {isChecked && <Confetti ref={explosion} />}
     </Box>
   );
 };
+
+const Confetti = React.memo(
+  React.forwardRef<ConfettiCannon>((_, ref) => {
+    const theme = useTheme<Theme>();
+    return (
+      <ConfettiCannon
+        count={200}
+        origin={{ x: -40, y: 0 }}
+        fallSpeed={2000}
+        autoStart={false}
+        autoStartDelay={500}
+        colors={[
+          theme.colors.primary,
+          theme.colors.secondary,
+          theme.colors.tercery
+        ]}
+        ref={ref}
+      />
+    );
+  })
+);
 
 export default React.memo(Widget);
