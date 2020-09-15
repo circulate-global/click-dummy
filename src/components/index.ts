@@ -7,6 +7,7 @@ export { default as Switch } from "./Switch";
 export { default as BorderlessTap } from "./BorderlessTap";
 export { default as Footer } from "./Footer";
 export { default as TouchableResize } from "./TouchableResize";
+export { default as Badge } from "./Badge";
 
 export { default as Checkbox } from "./Form/Checkbox";
 
