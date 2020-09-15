@@ -5,6 +5,7 @@ import {
   createText,
   ThemeProvider as ReStyleThemeProvider
 } from "@shopify/restyle";
+import { StatusBar } from "expo-status-bar";
 import { DarkModeContext } from "../context";
 
 const palette = {
@@ -89,6 +90,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const { darkMode } = useContext(DarkModeContext);
   return (
     <ReStyleThemeProvider theme={darkMode ? darkTheme : theme}>
+      <StatusBar style={darkMode ? "light" : "dark"} />
       {children}
     </ReStyleThemeProvider>
   );
