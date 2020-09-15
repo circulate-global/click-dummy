@@ -46,6 +46,7 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
           <Text color="mainBackground">circulate</Text>
         </Box>
         <Box flex={1} paddingLeft="m">
+          <Text>YEAH!</Text>
           <Text>I'm investing for a plastic free future!</Text>
           <Box alignItems="flex-start" paddingVertical="s">
             <TouchableResize {...{ onPress }}>

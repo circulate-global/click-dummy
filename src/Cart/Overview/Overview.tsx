@@ -13,44 +13,49 @@ import Widget from "./Widget";
 
 const PERCENTAGE = 0.03;
 
-export const assets = [require("../../../assets/example.jpg")];
+export const assets = [
+  require("./assets/cucumber.jpg"),
+  require("./assets/honey.jpg"),
+  require("./assets/oil.jpg"),
+  require("./assets/tomato.jpg")
+];
 
 const defaultCart = [
   {
     id: 0,
-    title: "Sneakers",
+    title: "Gurke",
     amount: 1,
     price: 4.45,
     delivery: "1-3",
-    size: "600ml",
+    size: "200g",
     source: assets[0]
   },
   {
     id: 1,
-    title: "Chips",
+    title: "Honig",
     amount: 2,
     price: 1.95,
     delivery: "1-4",
     size: "600ml",
-    source: assets[0]
+    source: assets[1]
   },
   {
     id: 2,
-    title: "Potato",
+    title: "Olivenöl",
     amount: 1,
     price: 0.45,
     delivery: "1-5",
     size: "600ml",
-    source: assets[0]
+    source: assets[2]
   },
   {
     id: 3,
-    title: "Tomato",
+    title: "Tomaten",
     amount: 2,
     price: 0.85,
     delivery: "3-4",
-    size: "600ml",
-    source: assets[0]
+    size: "250g",
+    source: assets[3]
   }
 ];
 
@@ -101,7 +106,8 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
           paddingHorizontal: theme.spacing.m
         }}
         style={{
-          marginBottom: footerHeight
+          marginBottom: footerHeight,
+          height: 0
         }}
       >
         <Transitioning.View {...{ ref, transition }}>

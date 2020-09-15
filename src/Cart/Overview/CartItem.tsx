@@ -38,7 +38,7 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
           <Text variant="subtitle2">{size}</Text>
           <Text variant="description">{`Lieferzeit: in ca. ${delivery} Werktagen*`}</Text>
           <Text variant="description" style={{ opacity: 0.5 }}>
-            {`${price} €`}
+            {`€ ${price} / Stk.`}
           </Text>
         </Box>
       </Box>
