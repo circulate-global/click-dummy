@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 25,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderWidth: 1
   }
 });
 
@@ -26,13 +27,15 @@ const Button = ({ label, onPress, variant }: ButtonProps) => {
   const backgroundColor =
     variant === "primary" ? theme.colors.primary : theme.colors.mainBackground;
   const color =
-    variant === "primary" ? theme.colors.mainBackground : theme.colors.primary;
+    variant === "primary"
+      ? theme.colors.mainBackground
+      : theme.colors.mainForeground;
   return (
     <RectButton
-      style={[styles.container, { backgroundColor }]}
+      style={[styles.container, { backgroundColor, borderColor: color }]}
       {...{ onPress }}
     >
-      <Text variant="button" style={{ color }}>
+      <Text variant="button" style={{ color: color }}>
         {label}
       </Text>
     </RectButton>

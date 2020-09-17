@@ -29,6 +29,7 @@ const theme = createTheme({
     baseTitle: palette.greenPrimary
   },
   spacing: {
+    xs: 4,
     s: 8,
     m: 16,
     l: 24,
@@ -42,12 +43,20 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: 26,
+      lineHeight: 30,
       fontFamily: "PangeaTrial-Medium",
       color: "baseText"
     },
     subtitle2: {
       fontSize: 26,
+      lineHeight: 30,
       fontFamily: "PangeaTrial-Light",
+      color: "baseText"
+    },
+    subtitle3: {
+      fontSize: 24,
+      lineHeight: 26,
+      fontFamily: "PangeaTrial-Medium",
       color: "baseText"
     },
     body: {

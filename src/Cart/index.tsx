@@ -23,16 +23,6 @@ export const CartNavigator = () => {
           fontFamily: "PangeaTrial-Medium"
         },
         headerTintColor: theme.colors.mainForeground,
-        headerLeft: () => (
-          <Box paddingLeft="s">
-            <RoundedIcon
-              name={"menu"}
-              size={40}
-              color="mainForeground"
-              backgroundColor="mainBackground"
-            />
-          </Box>
-        ),
         headerRight: () => (
           <Box paddingRight="s">
             <RoundedIconButton

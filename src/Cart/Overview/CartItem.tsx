@@ -10,11 +10,12 @@ export interface CartItemProps {
   onChange: () => void;
 }
 const CartItem = ({ cartItem, onChange }: CartItemProps) => {
-  const { title, amount, price, delivery, size, source } = cartItem;
+  const { title, amount, price, delivery, description, source } = cartItem;
   const theme = useTheme<Theme>();
   return (
     <Box
-      margin="m"
+      marginTop="m"
+      marginHorizontal="m"
       paddingBottom="m"
       borderBottomWidth={1}
       borderColor="mainForeground"
@@ -34,8 +35,10 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
           {...{ source }}
         />
         <Box flex={1} paddingLeft="m">
-          <Text variant="subtitle2">{title}</Text>
-          <Text variant="subtitle2">{size}</Text>
+          <Text variant="subtitle3">{title}</Text>
+          <Text variant="description" paddingBottom="s">
+            {description}
+          </Text>
           <Text variant="description">{`Lieferzeit: in ca. ${delivery} Werktagen*`}</Text>
           <Text variant="description" style={{ opacity: 0.5 }}>
             {`€ ${price} / Stk.`}

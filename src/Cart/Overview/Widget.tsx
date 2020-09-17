@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import {
   Box,
   Text,
@@ -11,6 +11,7 @@ import {
 import { useTheme } from "@shopify/restyle";
 import ConfettiCannon from "react-native-confetti-cannon";
 
+const logo = require("../../../assets/logo_white.png");
 interface WidgetProps {
   price: number;
   percentage: number;
@@ -32,9 +33,9 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
     <Box
       paddingVertical="m"
       borderBottomWidth={2}
-      borderBottomColor="primary"
+      borderBottomColor="mainForeground"
       marginHorizontal="m"
-      marginBottom="m"
+      marginBottom="xs"
     >
       <Box flexDirection="row" justifyContent="space-between">
         <Box
@@ -45,11 +46,20 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
           alignItems="center"
           borderRadius={theme.spacing.m}
         >
-          <Text color="mainBackground">circulate</Text>
+          <Image
+            source={logo}
+            style={{
+              height: 50,
+              width: 130
+            }}
+            resizeMode="contain"
+          />
         </Box>
         <Box flex={1} paddingLeft="m">
-          <Text>YEAH!</Text>
-          <Text>I'm investing for a plastic free future!</Text>
+          <Text variant="subtitle3">
+            Deine Investition für eine plastikfreie Welt!
+          </Text>
+          <Text variant="description">YEAH!</Text>
           <Box alignItems="flex-start" paddingVertical="s">
             <TouchableResize {...{ onPress }}>
               <Box
@@ -57,11 +67,13 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
                 alignItems="center"
                 justifyContent="flex-start"
               >
-                <Text color="tercery">see my impact</Text>
+                <Text variant="description" color="primary">
+                  was bewirke ich
+                </Text>
                 <RoundedIcon
                   name="info"
                   size={25}
-                  color="tercery"
+                  color="primary"
                   backgroundColor="mainBackground"
                 />
               </Box>

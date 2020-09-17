@@ -14,48 +14,38 @@ import Widget from "./Widget";
 const PERCENTAGE = 0.03;
 
 export const assets = [
-  require("./assets/cucumber.jpg"),
-  require("./assets/honey.jpg"),
-  require("./assets/oil.jpg"),
-  require("./assets/tomato.jpg")
+  require("./assets/sunglasses.png"),
+  require("./assets/flipflop.png"),
+  require("./assets/iphonecase.png")
 ];
 
 const defaultCart = [
   {
     id: 0,
-    title: "Gurke",
+    title: "Sonnenbrille",
     amount: 1,
-    price: 4.45,
-    delivery: "1-3",
-    size: "200g",
+    price: 24.69,
+    delivery: "1–3",
+    description: "Matt schwarz",
     source: assets[0]
   },
   {
     id: 1,
-    title: "Honig",
+    title: "Flip-Flop",
     amount: 2,
-    price: 1.95,
-    delivery: "1-4",
-    size: "600ml",
+    price: 9.99,
+    delivery: "1–4",
+    description: "Größe 41",
     source: assets[1]
   },
   {
     id: 2,
-    title: "Olivenöl",
+    title: "iPhone 11 Case",
     amount: 1,
-    price: 0.45,
-    delivery: "1-5",
-    size: "600ml",
+    price: 9.89,
+    delivery: "1–5",
+    description: "Petrol",
     source: assets[2]
-  },
-  {
-    id: 3,
-    title: "Tomaten",
-    amount: 2,
-    price: 0.85,
-    delivery: "3-4",
-    size: "250g",
-    source: assets[3]
   }
 ];
 
@@ -76,7 +66,7 @@ export interface ItemProps {
   amount: number;
   price: number;
   delivery: string;
-  size: string;
+  description: string;
   source: number;
 }
 
@@ -157,17 +147,18 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
           <Box
             flexDirection="row"
             justifyContent="space-between"
+            alignItems="center"
             paddingBottom="m"
           >
             <Text>Gesamtbetrag</Text>
-            <Text>{`€ ${(totalPrice * (isChecked ? 1 + PERCENTAGE : 1)).toFixed(
-              2
-            )}`}</Text>
+            <Text variant="subtitle2">{`€ ${(
+              totalPrice * (isChecked ? 1 + PERCENTAGE : 1)
+            ).toFixed(2)}`}</Text>
           </Box>
           <Button
             label="zur Kasse"
             onPress={() => navigation.push("CheckOut")}
-            variant="primary"
+            variant="default"
           />
         </Box>
         <Footer backgroundColor="mainBackground" />

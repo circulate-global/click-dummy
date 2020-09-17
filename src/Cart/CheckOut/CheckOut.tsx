@@ -33,37 +33,37 @@ const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
       backgroundColor="mainBackground"
       justifyContent="space-between"
     >
-      <BorderlessTap onPress={() => navigation.navigate("Overview")}>
-        <Box
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="flex-start"
-          padding="m"
-        >
-          <RoundedIcon
-            name="arrow-left"
-            size={20}
-            color="mainForeground"
-            backgroundColor="mainBackground"
-          />
-          <Text>zurück</Text>
-        </Box>
-      </BorderlessTap>
+      <Box padding="m">
+        <BorderlessTap onPress={() => navigation.navigate("Overview")}>
+          <Box
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="flex-start"
+          >
+            <RoundedIcon
+              name="arrow-left"
+              size={20}
+              color="mainForeground"
+              backgroundColor="mainBackground"
+            />
+            <Text>zurück</Text>
+          </Box>
+        </BorderlessTap>
+        <Text variant="subtitle3" paddingTop="l">
+          {`Bis zum \nnächsten Mal`}
+        </Text>
+      </Box>
       <Transitioning.View {...{ ref, transition }}>
         <Box
           height={200}
           width={"auto"}
-          backgroundColor="secondary"
+          backgroundColor="mainBackground"
           justifyContent="center"
           padding="m"
         >
-          <Button
-            variant="primary"
-            onPress={() => alert("Danke")}
-            label="Zahlen"
-          />
+          <Button variant="default" onPress={() => null} label="Zahlen" />
         </Box>
-        <Footer backgroundColor="secondary" />
+        <Footer backgroundColor="mainBackground" />
       </Transitioning.View>
     </Box>
   );
