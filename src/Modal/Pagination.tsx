@@ -1,12 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Animated } from "react-native";
 import { Box, Theme } from "../components";
 import { ThumbnailProps } from "./Thumbnail";
 import { useTheme } from "@shopify/restyle";
-import Animated, { Extrapolate, interpolate } from "react-native-reanimated";
 
 interface PaginationProps {
-  currentIndex: Animated.Value<number>;
+  currentIndex: Animated.AnimatedDivision;
   data: ThumbnailProps[];
 }
 const Pagination = ({ currentIndex, data }: PaginationProps) => {
@@ -16,15 +15,15 @@ const Pagination = ({ currentIndex, data }: PaginationProps) => {
     <Box flexDirection="row" justifyContent="center" alignItems="center">
       {data.map((_, index) => {
         const inputRange = [index - 1, index, index + 1];
-        const opacity = interpolate(currentIndex, {
+        const opacity = currentIndex.interpolate({
           inputRange,
           outputRange: [0.4, 1, 0.4],
-          extrapolate: Extrapolate.CLAMP
+          extrapolate: "clamp"
         });
-        const scale = interpolate(currentIndex, {
+        const scale = currentIndex.interpolate({
           inputRange,
           outputRange: [1, 1.2, 1],
-          extrapolate: Extrapolate.CLAMP
+          extrapolate: "clamp"
         });
         return (
           <Animated.View
