@@ -102,9 +102,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   return (
     <Box flex={1} backgroundColor="mainBackground">
       <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal: theme.spacing.m
-        }}
+        contentContainerStyle={{}}
         style={{
           marginBottom: footerHeight,
           height: 0

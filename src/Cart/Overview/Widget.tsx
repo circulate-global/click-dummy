@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, Props } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { StyleSheet } from "react-native";
 import {
   Box,
   Text,
@@ -32,6 +33,7 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
       paddingVertical="m"
       borderBottomWidth={2}
       borderBottomColor="primary"
+      marginHorizontal="m"
       marginBottom="m"
     >
       <Box flexDirection="row" justifyContent="space-between">

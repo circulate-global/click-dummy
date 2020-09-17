@@ -14,7 +14,7 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
   const theme = useTheme<Theme>();
   return (
     <Box
-      marginVertical="m"
+      margin="m"
       paddingBottom="m"
       borderBottomWidth={1}
       borderColor="mainForeground"
