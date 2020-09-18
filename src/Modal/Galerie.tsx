@@ -1,28 +1,35 @@
 import React, { useRef } from "react";
-import { Dimensions, FlatList, ListRenderItem, Animated } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  Animated,
+  ScrollView,
+  Platform
+} from "react-native";
 import Thumbnail, { ThumbnailProps } from "./Thumbnail";
 import Pagination from "./Pagination";
 
 const { width: wWidth } = Dimensions.get("window");
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 interface GalerieProps {
   thumbnails: ThumbnailProps[];
 }
 
 const Galerie = ({ thumbnails }: GalerieProps) => {
+  const ref = useRef<ScrollView>(null);
   const scrollX = useRef<Animated.Value>(new Animated.Value(0)).current;
-  const keyExtractor = (item: ThumbnailProps) => item.index.toString();
-  const renderItem: ListRenderItem<ThumbnailProps> = ({ item }) => (
-    <Thumbnail {...item} />
-  );
   const width = wWidth > 500 ? 500 : wWidth;
+  const onDotPress = (index: number) => {
+    if (ref.current) {
+      if (Platform.OS === "web")
+        // @ts-ignore
+        ref.current._component.scrollTo({ x: index * width });
+      else ref.current.scrollTo({ x: index * width });
+    }
+  };
   return (
     <>
-      <AnimatedFlatList
-        data={thumbnails}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
+      <Animated.ScrollView
         decelerationRate={0}
         snapToInterval={width}
         horizontal
@@ -36,10 +43,20 @@ const Galerie = ({ thumbnails }: GalerieProps) => {
         )}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
-      />
+        ref={ref}
+      >
+        {thumbnails.map((item: ThumbnailProps) => (
+          <Thumbnail
+            key={item.index}
+            index={item.index}
+            picture={item.picture}
+          />
+        ))}
+      </Animated.ScrollView>
       <Pagination
         data={thumbnails}
         currentIndex={Animated.divide(scrollX, width)}
+        {...{ onDotPress }}
       />
     </>
   );
