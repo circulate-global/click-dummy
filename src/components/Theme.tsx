@@ -13,6 +13,7 @@ const palette = {
   redPrimary: "#E07159",
   purplePrimary: "#965E8E",
   greenPrimary: "#A3C76C",
+  bluePrimary: "#43959e",
 
   black: "#0B0B0B",
   white: "white"
@@ -25,6 +26,7 @@ const theme = createTheme({
     primary: palette.redPrimary,
     secondary: palette.greenPrimary,
     tercery: palette.purplePrimary,
+    quaternary: palette.bluePrimary,
     baseText: palette.black,
     baseTitle: palette.greenPrimary
   },
@@ -90,6 +92,7 @@ const darkTheme = {
     primary: palette.redPrimary,
     secondary: palette.yellowPrimary,
     tercery: palette.yellowPrimary,
+    quaternary: palette.purplePrimary,
     baseText: palette.white,
     baseTitle: palette.yellowPrimary
   }

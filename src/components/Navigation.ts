@@ -14,6 +14,7 @@ export interface AppNavigationProps<RouteName extends keyof AppRoutes> {
 export type AppRoutes = {
   Cart: undefined;
   Modal: undefined;
+  Landing: undefined;
 };
 
 export type CartRoutes = {
