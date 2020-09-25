@@ -36,11 +36,19 @@ export default function App() {
             <AppStack.Navigator
               headerMode="none"
               mode="modal"
-              initialRouteName="Landing"
+              initialRouteName="Cart"
             >
               <AppStack.Screen name="Cart" component={CartNavigator} />
-              <AppStack.Screen name="Modal" component={Modal} />
-              <AppStack.Screen name="Landing" component={Landing} />
+              <AppStack.Screen
+                name="Modal"
+                component={Modal}
+                options={{ title: "Circulate" }}
+              />
+              <AppStack.Screen
+                name="Landing"
+                component={Landing}
+                options={{ title: "Circulate" }}
+              />
             </AppStack.Navigator>
           </LoadAssets>
         </ThemeProvider>

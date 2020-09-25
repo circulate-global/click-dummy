@@ -11,7 +11,7 @@ import {
 import { useTheme } from "@shopify/restyle";
 import Widget from "./Widget";
 
-const PERCENTAGE = 0.03;
+const PERCENTAGE = 0.02;
 
 export const assets = [
   require("./assets/sunglasses.png"),
@@ -82,7 +82,10 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
   const [isChecked, setIsChecked] = useState(false);
   const ref = useRef<TransitioningView>(null);
   const theme = useTheme<Theme>();
-  const onWidgetPress = () => navigation.navigate("Modal");
+  const onWidgetPress = () =>
+    navigation.navigate("Modal", {
+      amount: (totalPrice * PERCENTAGE * 2).toFixed(2).replace(".", ",")
+    });
   const onWidgetToggle = () => setIsChecked(prev => !prev);
 
   useEffect(() => {
@@ -157,7 +160,7 @@ const Overview = ({ navigation }: CartNavigationProps<"Overview">) => {
           </Box>
           <Button
             label="zur Kasse"
-            onPress={() => navigation.push("CheckOut")}
+            onPress={() => navigation.push("CheckOut", { isChecked })}
             variant="default"
           />
         </Box>

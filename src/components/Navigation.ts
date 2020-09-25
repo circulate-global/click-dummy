@@ -19,6 +19,6 @@ export type AppRoutes = {
 
 export type CartRoutes = {
   Overview: undefined;
-  CheckOut: undefined;
+  CheckOut: { isChecked: boolean } | undefined;
   Modal: undefined;
 };

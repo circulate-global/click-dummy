@@ -1,97 +1,147 @@
-import React from "react";
-import { View, ScrollView } from "react-native";
-import { Box, Text, RoundedIconButton, Theme } from "../components";
+import React, { useState, useEffect } from "react";
+import { ScrollView, Image, Dimensions } from "react-native";
+import {
+  Box,
+  Text,
+  RoundedIconButton,
+  Theme,
+  Button,
+  TouchableResize
+} from "../components";
 import { AppNavigationProps } from "../components/Navigation";
-import { ThumbnailProps } from "./Thumbnail";
-import Galerie from "./Galerie";
-import { Feather as Icon } from "@expo/vector-icons";
+import Thumbnail, { ThumbnailProps } from "./Thumbnail";
+import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { useTheme } from "@shopify/restyle";
+import * as Linking from "expo-linking";
 
 export const assets = [
-  require("./assets/1.jpg"),
-  require("./assets/2.jpg"),
-  require("./assets/3.jpg"),
-  require("./assets/4.jpg")
+  require("./assets/sneha.jpg"),
+  require("./assets/factory.jpg")
 ];
+
+const { width: wWidth } = Dimensions.get("window");
 
 const galerie: ThumbnailProps[] = [
   {
     index: 0,
     picture: {
       src: assets[0],
-      height: 250,
-      width: 250
+      height: 300,
+      width: 300
     }
   },
   {
     index: 1,
     picture: {
       src: assets[1],
-      height: 250,
-      width: 250
-    }
-  },
-  {
-    index: 2,
-    picture: {
-      src: assets[2],
-      height: 250,
-      width: 250
-    }
-  },
-  {
-    index: 3,
-    picture: {
-      src: assets[3],
-      height: 250,
-      width: 250
+      height: 200,
+      width: 200
     }
   }
 ];
 
-const advantages: string[] = [
-  "scale up opeations",
-  "process higher amounts of plastic",
-  "uplift more waste workers from the informal sector into stable employment",
-  "invest in technical infrastructure"
+const list: { name: string; text: string }[] = [
+  {
+    name: "account",
+    text: "Sneha"
+  },
+  {
+    name: "factory",
+    text: "Saahas Zero Waste"
+  },
+  {
+    name: "map-marker",
+    text: "Bangalore/Indien"
+  },
+  {
+    name: "scale-balance",
+    text: "Bangalore/Indien"
+  }
 ];
 
-const Modal = ({ navigation }: AppNavigationProps<"Modal">) => {
+const Modal = ({ navigation, route }: AppNavigationProps<"Modal">) => {
   const theme = useTheme<Theme>();
+  const width = wWidth > 500 ? 500 : wWidth;
+  const [amount, setAmount] = useState(0);
+  useEffect(() => {
+    if (route.params?.amount) {
+      setAmount(route.params.amount);
+    }
+  }, [route.params?.amount]);
   return (
-    <Box flex={1} backgroundColor="mainBackground">
+    <Box flex={1} backgroundColor="mainBackground" maxWidth={500}>
       <ScrollView>
-        <Box height={400}>
-          <Galerie thumbnails={galerie} />
+        <Box height={350} justifyContent="center" alignItems="center">
+          <Thumbnail index={0} picture={galerie[0].picture} />
         </Box>
         <Box padding="m">
           <Text variant="subtitle1" paddingBottom="m">
-            Our first partnership: Saahas Zero Waste.
+            Dein Impact:
           </Text>
-          <Text paddingBottom="m">
-            The waste management organization from Bangalore/Inda has a strong
-            focus on ethical standards and the inclusion of marginalized soical
-            groups and women.
-          </Text>
-          <Text paddingBottom="m">
-            With support from <Text color="primary">circulate</Text>, Saahas
-            can:
-          </Text>
-          {advantages.map((item, index) => (
-            <View key={index}>
-              <Box paddingBottom="s" flexDirection="row" maxWidth={300}>
-                <Icon
-                  name="arrow-right"
-                  style={{
-                    paddingRight: 10,
-                    paddingTop: 6,
-                    color: theme.colors.primary
-                  }}
-                />
-                <Text>{item}</Text>
-              </Box>
-            </View>
+          {list.map(item => (
+            <Box
+              key={item.name}
+              flexDirection="row"
+              alignItems="center"
+              paddingBottom="s"
+            >
+              <Icon name={item.name} color={theme.colors.primary} size={20} />
+              {item.name !== "scale-balance" ? (
+                <Text paddingLeft="s">{item.text}</Text>
+              ) : (
+                <Text paddingLeft="s" variant="bodyBold">
+                  {amount} kg
+                </Text>
+              )}
+            </Box>
           ))}
+          <Text>
+            Mit deinem Beitrag sorgst du dafür, dass Sneha {amount} kg
+            Plastikmüll in deinem Namen sammelt, recycelt und wieder in den
+            Kreislauf bringt.
+          </Text>
+        </Box>
+        <Box height={200}>
+          <Image source={assets[1]} style={{ width, height: 200 }} />
+          <Box position="absolute" left={0} right={0} top={0} bottom={0}>
+            <Box
+              flex={1}
+              flexDirection="row"
+              alignContent="center"
+              justifyContent="center"
+            >
+              <Box justifyContent="center">
+                <TouchableResize
+                  onPress={() => Linking.openURL("http://circulate.global")}
+                >
+                  <Box borderRadius={theme.spacing.m} overflow="hidden">
+                    <Text
+                      color="primary"
+                      paddingVertical="xs"
+                      paddingHorizontal="m"
+                      style={{
+                        opacity: 0.8,
+                        backgroundColor: theme.colors.mainBackground
+                      }}
+                    >
+                      mehr erfahren
+                    </Text>
+                  </Box>
+                </TouchableResize>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box padding="m">
+          <Text paddingBottom="m">
+            Übrigens: Mit unserem Abo kannst du auch gleich deinen gesamten
+            Plastik Fußabdruck kompensieren. Gutes tun kann so einfach sein!
+          </Text>
+          <Button
+            label="jetzt Abo abschließen"
+            onPress={() => Linking.openURL("http://circulate.global")}
+            variant="primary"
+          />
         </Box>
       </ScrollView>
       <Box position="absolute" top={40} left={20}>

@@ -1,1 +1,1 @@
-export { default } from "./CheckOut";
+export { default, assets } from "./CheckOut";

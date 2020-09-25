@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { CartNavigationProps } from "../../components/Navigation";
 import {
   Transition,
@@ -11,9 +11,13 @@ import {
   Button,
   BorderlessTap,
   Text,
-  RoundedIcon
+  RoundedIcon,
+  Theme
 } from "../../components";
 import { useTheme } from "@shopify/restyle";
+import { ImageBackground } from "react-native";
+
+export const assets = [require("./assets/jungle.jpg")];
 
 const transition = (
   <Transition.Together>
@@ -21,12 +25,18 @@ const transition = (
   </Transition.Together>
 );
 
-const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
+const CheckOut = ({ navigation, route }: CartNavigationProps<"CheckOut">) => {
+  const [isChecked, setIsChecked] = useState(false);
   const ref = useRef<TransitioningView>(null);
-  const theme = useTheme();
+  const theme = useTheme<Theme>();
   useLayoutEffect(() => {
     if (ref.current) ref.current.animateNextTransition();
   }, []);
+  useEffect(() => {
+    if (route.params?.isChecked) {
+      setIsChecked(route.params.isChecked);
+    }
+  }, [route.params?.isChecked]);
   return (
     <Box
       flex={1}
@@ -34,24 +44,27 @@ const CheckOut = ({ navigation }: CartNavigationProps<"CheckOut">) => {
       justifyContent="space-between"
     >
       <Box padding="m">
-        <BorderlessTap onPress={() => navigation.navigate("Overview")}>
-          <Box
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="flex-start"
-          >
-            <RoundedIcon
-              name="arrow-left"
-              size={20}
-              color="mainForeground"
-              backgroundColor="mainBackground"
-            />
-            <Text>zurück</Text>
-          </Box>
-        </BorderlessTap>
-        <Text variant="subtitle3" paddingTop="l">
-          {`Bis zum \nnächsten Mal`}
-        </Text>
+        <Box borderRadius={theme.spacing.m} overflow="hidden">
+          {isChecked ? (
+            <ImageBackground source={assets[0]} style={{ height: 300 }}>
+              <Box
+                flex={1}
+                padding="l"
+                alignItems="flex-start"
+                justifyContent="flex-end"
+              >
+                <Text variant="subtitle3" style={{ color: "white" }}>
+                  Du Champ!
+                </Text>
+                <Text style={{ color: "white" }}>
+                  Dank dir ist unsere Welt ein bisschen sauberer!
+                </Text>
+              </Box>
+            </ImageBackground>
+          ) : (
+            <Text>Auf Wiedersehen</Text>
+          )}
+        </Box>
       </Box>
       <Transitioning.View {...{ ref, transition }}>
         <Box

@@ -14,7 +14,7 @@ export interface ThumbnailProps {
   };
 }
 
-const Thumbnail = ({ index, picture }: ThumbnailProps) => {
+const Thumbnail = ({ picture }: ThumbnailProps) => {
   const theme = useTheme<Theme>();
   const width = wWidth > 500 ? 500 : wWidth;
   return (
@@ -23,7 +23,7 @@ const Thumbnail = ({ index, picture }: ThumbnailProps) => {
         height={picture.height}
         width={picture.width}
         borderWidth={1}
-        borderColor="primary"
+        borderColor="mainBackground"
         borderRadius={
           picture.height > picture.width ? picture.height : picture.width
         }

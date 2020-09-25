@@ -56,10 +56,8 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
           />
         </Box>
         <Box flex={1} paddingLeft="m">
-          <Text variant="subtitle3">
-            Deine Investition für eine plastikfreie Welt!
-          </Text>
-          <Text variant="description">YEAH!</Text>
+          <Text variant="subtitle3">Kompensiere deinen Plastikfußabdruck</Text>
+          <Text variant="description">für eine sauberere Welt!</Text>
           <Box alignItems="flex-start" paddingVertical="s">
             <TouchableResize {...{ onPress }}>
               <Box
@@ -67,11 +65,9 @@ const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
                 alignItems="center"
                 justifyContent="flex-start"
               >
-                <Text variant="description" color="primary">
-                  was bewirke ich
-                </Text>
+                <Text color="primary">was bewirke ich</Text>
                 <RoundedIcon
-                  name="info"
+                  name="help-circle"
                   size={25}
                   color="primary"
                   backgroundColor="mainBackground"

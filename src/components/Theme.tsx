@@ -66,6 +66,11 @@ const theme = createTheme({
       fontFamily: "PangeaTrial-Regular",
       color: "baseText"
     },
+    bodyBold: {
+      fontSize: 18,
+      fontFamily: "PangeaTrial-Bold",
+      color: "baseText"
+    },
     button: {
       fontSize: 18,
       fontFamily: "PangeaTrial-Regular",
