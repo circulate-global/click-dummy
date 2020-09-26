@@ -7,6 +7,20 @@ import { InitialState, NavigationContainer } from "@react-navigation/native";
 import Constants from "expo-constants";
 
 const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
+const linking = {
+  prefixes: ["http://circulate.global", "http://dummy.circulate.global"],
+  config: {
+    screens: {
+      Cart: {
+        screens: {
+          Overview: "/"
+        }
+      },
+      Modal: "/about_us",
+      Landing: "/home"
+    }
+  }
+};
 
 export type FontSource = Parameters<typeof Font.loadAsync>[0];
 const usePromiseAll = (promises: Promise<void | void[]>[], cb: () => void) =>
@@ -63,7 +77,7 @@ const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
     return <AppLoading />;
   }
   return (
-    <NavigationContainer linking={{}} {...{ onStateChange, initialState }}>
+    <NavigationContainer linking={linking} {...{ onStateChange, initialState }}>
       {children}
     </NavigationContainer>
   );

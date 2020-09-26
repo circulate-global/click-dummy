@@ -95,7 +95,7 @@ const Modal = ({ navigation, route }: AppNavigationProps<"Modal">) => {
               )}
             </Box>
           ))}
-          <Text>
+          <Text paddingVertical="s">
             Mit deinem Beitrag sorgst du dafür, dass Sneha {amount} kg
             Plastikmüll in deinem Namen sammelt, recycelt und wieder in den
             Kreislauf bringt.
@@ -133,9 +133,8 @@ const Modal = ({ navigation, route }: AppNavigationProps<"Modal">) => {
           </Box>
         </Box>
         <Box padding="m">
-          <Text paddingBottom="m">
-            Übrigens: Mit unserem Abo kannst du auch gleich deinen gesamten
-            Plastik Fußabdruck kompensieren. Gutes tun kann so einfach sein!
+          <Text paddingBottom="l" paddingTop="s">
+            {`Übrigens: Mit unserem Abo kannst du auch gleich deinen gesamten Plastik Fußabdruck kompensieren. \nGutes tun kann so einfach sein!`}
           </Text>
           <Button
             label="jetzt Abo abschließen"

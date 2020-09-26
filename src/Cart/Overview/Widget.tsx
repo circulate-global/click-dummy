@@ -21,7 +21,7 @@ interface WidgetProps {
 const Widget = ({ price, percentage, onPress, onToggle }: WidgetProps) => {
   const [isChecked, setIsChecked] = useState(false);
   const explosion = useRef(null);
-  const donation = (price * percentage).toFixed(2);
+  const donation = (price * percentage).toFixed(2).replace(".", ",");
   const theme = useTheme<Theme>();
   useEffect(() => {
     if (isChecked && explosion.current) {

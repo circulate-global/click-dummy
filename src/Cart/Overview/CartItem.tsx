@@ -41,7 +41,7 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
           </Text>
           <Text variant="description">{`Lieferzeit: in ca. ${delivery} Werktagen*`}</Text>
           <Text variant="description" style={{ opacity: 0.5 }}>
-            {`€ ${price} / Stk.`}
+            {`€ ${price.toFixed(2).replace(".", ",")} / Stk.`}
           </Text>
         </Box>
       </Box>
@@ -105,7 +105,9 @@ const CartItem = ({ cartItem, onChange }: CartItemProps) => {
               <Text variant="description"> Entfernen</Text>
             </Box>
           </BorderlessTap>
-          <Text variant="subtitle2">{`€ ${(price * amount).toFixed(2)}`}</Text>
+          <Text variant="subtitle2">{`€ ${(price * amount)
+            .toFixed(2)
+            .replace(".", ",")}`}</Text>
         </Box>
       </Box>
     </Box>
